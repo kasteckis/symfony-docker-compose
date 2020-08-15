@@ -43,6 +43,7 @@ If you use default IP addresses, append your `.env` file with the following:
 
 * You cannot use same configuration for multiple projects. Docker won't allow you to allocate same IP addresses for multiple containers.
 * You would need to modify `docker-compose.yml` IP addresses. For example from `192.168.2.0/24` to `192.168.3.0/24`
+* If you can't compose new project, you might need to delete your old docker networks. Write `docker network ls` and then remove your old project network by writing `docker network rm NETWORK_ID` (for example `docker network rm 528d8c753c17`)
 
 # Something does not work?
 
