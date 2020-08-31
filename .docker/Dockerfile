@@ -2,9 +2,19 @@
 FROM php:7.4.8-apache
 RUN apt-get update && apt-get upgrade -y
 # Install packages needed to install php extensions
-RUN apt-get install git zlib1g-dev libxml2-dev libzip-dev -y
+RUN apt-get install git zlib1g-dev libxml2-dev libzip-dev zip unzip -y
 # Install PHP extensions
-RUN docker-php-ext-install zip intl mysqli pdo pdo_mysql
+RUN docker-php-ext-install zip intl mysqli pdo pdo_mysql opcache
+# Install NPM
+RUN apt-get install npm -y
+# Install node manager - n
+RUN npm install -g n
+# Install latest stable node version
+RUN n stable
+# Upgrade npm to latest version
+RUN npm install -g npm
+# Install scss
+RUN npm install -g sass
 # Install XDEBUG
 RUN pecl install xdebug-2.9.6 && docker-php-ext-enable xdebug
 RUN echo 'zend_extension="/usr/local/lib/php/extensions/no-debug-non-zts-20190902/xdebug.so"' >> /usr/local/etc/php/php.ini

@@ -59,11 +59,11 @@ services:
     container_name: project_develop_init
     volumes:
       - ./:/var/www/html/
-      - ./.docker/init_symfony.sh:/usr/local/bin/init_symfony.sh
+      - ./.docker/develop_init.sh:/usr/local/bin/develop_init
     depends_on:
       - "mysql"
       - "web"
-    command: "init_symfony.sh"
+    command: "develop_init"
 
 networks:
   default:
