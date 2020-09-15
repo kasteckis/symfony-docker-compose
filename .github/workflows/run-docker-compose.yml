@@ -3,12 +3,11 @@ name: Try to run docker-compose up
 on:
   push:
   pull_request:
-  
+  schedule:
+    - cron:  '0 0 * * *'
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
