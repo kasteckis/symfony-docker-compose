@@ -2,7 +2,7 @@
 Docker compose environment for Symfony (works for Laravel also) projects
 
 # Summary of what is included
-* PHP 7.4.9 with XDEBUG 2.9.6
+* PHP 7.4.10 with XDEBUG 2.9.6
 * Apache2
 * MySQL 5.7
 * PhpMyAdmin - manage MySQL
