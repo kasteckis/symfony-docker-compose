@@ -26,7 +26,7 @@ By default you can access services via:
 * Mailhog can be accessed via http://192.168.2.5:8025/
 * Access docker apache-php terminal by writing - `docker exec -it project_web bash`
 
-# Modifying .env file
+# Modifying .env file (If you are using Symfony)
 
 If you use default IP addresses, append your `.env` file with the following:
 
