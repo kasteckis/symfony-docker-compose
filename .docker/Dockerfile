@@ -1,5 +1,5 @@
 # Use image which contains apache with php
-FROM php:7.4.10-apache
+FROM php:7.4.11-apache
 RUN apt-get update && apt-get upgrade -y
 # Install packages needed to install php extensions
 RUN apt-get install git zlib1g-dev libxml2-dev libzip-dev zip unzip -y
@@ -16,7 +16,7 @@ RUN n stable
 # Install sass compiler
 RUN npm install -g sass
 # Install XDEBUG
-RUN pecl install xdebug-2.9.6 && docker-php-ext-enable xdebug
+RUN pecl install xdebug-2.9.8 && docker-php-ext-enable xdebug
 RUN echo 'xdebug.remote_port=9000' >> /usr/local/etc/php/php.ini
 RUN echo 'xdebug.remote_enable=1' >> /usr/local/etc/php/php.ini
 RUN echo 'xdebug.remote_connect_back=1' >> /usr/local/etc/php/php.ini
