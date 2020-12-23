@@ -23,7 +23,6 @@ services:
       PMA_HOST: mysql
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
-    restart: always
     networks:
       default:
         ipv4_address: 192.168.2.4
