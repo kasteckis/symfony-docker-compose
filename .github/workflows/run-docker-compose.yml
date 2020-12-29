@@ -12,7 +12,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Give permissions to develop_init.sh file
-      run: chmod +x ./.docker/develop_init.sh
     - name: Try to build docker compose
       run: docker-compose up -d --build

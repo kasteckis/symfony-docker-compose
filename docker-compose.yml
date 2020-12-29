@@ -53,17 +53,6 @@ services:
       default:
         ipv4_address: 192.168.2.5
 
-  develop_init:
-    build: ./.docker
-    container_name: project_develop_init
-    volumes:
-      - ./:/var/www/html/
-      - ./.docker/develop_init.sh:/usr/local/bin/develop_init
-    depends_on:
-      - "mysql"
-      - "web"
-    command: "develop_init"
-
 networks:
   default:
     driver: bridge
