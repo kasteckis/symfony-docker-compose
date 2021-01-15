@@ -16,7 +16,7 @@ RUN n stable
 # Install sass compiler
 RUN npm install -g sass
 # Install XDEBUG
-RUN pecl install xdebug-3.0.1 && docker-php-ext-enable xdebug
+RUN pecl install xdebug-2.9.8 && docker-php-ext-enable xdebug
 RUN echo 'xdebug.remote_port=9000' >> /usr/local/etc/php/php.ini
 RUN echo 'xdebug.remote_enable=1' >> /usr/local/etc/php/php.ini
 RUN echo 'xdebug.remote_connect_back=1' >> /usr/local/etc/php/php.ini
