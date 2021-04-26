@@ -2,9 +2,9 @@
 Docker compose environment for Symfony (also works for Laravel or plain PHP) projects
 
 # Summary of what is included
-* PHP 7.4.15 with XDEBUG 2.9.8
+* PHP 7.4.16 with XDEBUG 2.9.8
 * Apache2
-* MySQL 5.7
+* MySQL 8.0
 * PhpMyAdmin - manage MySQL
 * Mailhog - local mailing server to test emails
 * Installs `composer` and `symfony` commands
@@ -30,15 +30,15 @@ By default you can access services via:
 
 If you use default IP addresses, append your `.env` file with the following:
 
-* For database connection -`DATABASE_URL=mysql://root:@192.168.2.3:3306/project`
+* For database connection -`DATABASE_URL=mysql://project:project@192.168.2.3:3306/project`
 * For mailing server - `MAILER_URL=mailhog:1025//randomemail@gmail.com:randompassword` (You don't need to change email or password)
 
 # MySQL
 
 * If you haven't modified IP addresses, you can connect to your MySQL via 192.168.2.3:3306
 * If you don't have any additional software, you can connect to database via phpmyadmin (http://192.168.2.4/)
-* Nickname: `root`
-* There is no password, leave blank for that
+* Nickname: `project`
+* Password: `project`
 * Default table is called `project`
 
 # Notes and common issues
