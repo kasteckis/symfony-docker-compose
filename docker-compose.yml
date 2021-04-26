@@ -1,7 +1,7 @@
 version: "3"
 services:
   mysql:
-    image: mysql:5.7
+    image: mysql:8.0
     container_name: project_mysql
     networks:
       default:
@@ -10,8 +10,8 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "true"
       MYSQL_ROOT_PASSWORD:
       MYSQL_DATABASE: project
-      MYSQL_USER: root
-      MYSQL_PASSWORD:
+      MYSQL_USER: project
+      MYSQL_PASSWORD: project
     ports:
       - "9906:3306"
   phpmyadmin:
