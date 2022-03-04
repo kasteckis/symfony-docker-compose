@@ -3,9 +3,6 @@ services:
   mysql:
     image: mysql:8.0
     container_name: project_mysql
-    networks:
-      default:
-        ipv4_address: 192.168.2.3
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "true"
       MYSQL_ROOT_PASSWORD:
@@ -23,18 +20,12 @@ services:
       PMA_HOST: mysql
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
-    networks:
-      default:
-        ipv4_address: 192.168.2.4
     ports:
       - "81:80"
 
   web:
     build: ./.docker
     container_name: project_web
-    networks:
-      default:
-        ipv4_address: 192.168.2.2
     volumes:
       - ./:/var/www/html/
       - ./.docker/virtualhost.conf:/etc/apache2/sites-available/000-default.conf
@@ -44,6 +35,8 @@ services:
       - "80:80"
     depends_on:
       - mysql
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   mailhog:
     image: mailhog/mailhog
@@ -51,14 +44,3 @@ services:
     ports:
       - "1025:1025" # smtp server
       - "8025:8025" # web ui
-    networks:
-      default:
-        ipv4_address: 192.168.2.5
-
-networks:
-  default:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.168.2.0/24
