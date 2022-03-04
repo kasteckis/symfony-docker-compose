@@ -2,14 +2,14 @@
 Docker compose environment for Symfony (also works for Laravel or plain PHP) projects
 
 # Summary of what is included
-* PHP 7.4.27 with XDEBUG 3.1.2
+* PHP 8.1.2 with XDEBUG 3.1.3
 * Apache2
 * MySQL 8.0
 * PhpMyAdmin - manage MySQL
 * Mailhog - local mailing server to test emails
 * Installs `composer` and `symfony` commands
 * Virtualhost configuration dedicated for Symfony projects
-* Latest stable NPM
+* Latest stable NPM and Yarn
 * Latest stable Node.js
 
 # How to install this in my project?

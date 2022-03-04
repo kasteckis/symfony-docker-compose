@@ -13,7 +13,7 @@ services:
       MYSQL_USER: project
       MYSQL_PASSWORD: project
     ports:
-      - "9906:3306"
+      - "3306:3306"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: project_phpmyadmin
@@ -27,7 +27,7 @@ services:
       default:
         ipv4_address: 192.168.2.4
     ports:
-      - 81:80
+      - "81:80"
 
   web:
     build: ./.docker
@@ -43,14 +43,14 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - "mysql"
+      - mysql
 
   mailhog:
     image: mailhog/mailhog
     container_name: project_mailhog
     ports:
-      - 1025:1025 # smtp server
-      - 8025:8025 # web ui
+      - "1025:1025" # smtp server
+      - "8025:8025" # web ui
     networks:
       default:
         ipv4_address: 192.168.2.5
@@ -61,4 +61,4 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 192.168.2.0/24 # If you change this, make sure to change other IP addresses
+        - subnet: 192.168.2.0/24

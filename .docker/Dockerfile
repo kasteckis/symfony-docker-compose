@@ -1,5 +1,5 @@
 # Use image which contains apache with php
-FROM php:7.4.27-apache
+FROM php:8.1.2-apache
 RUN apt-get update && apt-get upgrade -y
 # Install packages needed to install php extensions
 RUN apt-get install git zlib1g-dev libxml2-dev libzip-dev zip unzip -y
@@ -13,10 +13,10 @@ RUN npm install -g npm
 RUN npm install -g n
 # Install latest stable node version
 RUN n stable
-# Install sass compiler
-RUN npm install -g sass
+# Install latest stable Yarn
+RUN npm install --global yarn
 # Install XDEBUG
-RUN pecl install xdebug-3.1.2 && docker-php-ext-enable xdebug
+RUN pecl install xdebug-3.1.3 && docker-php-ext-enable xdebug
 # Install composer command
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 # Install symfony command
