@@ -51,3 +51,8 @@ If you use default IP addresses, append your `.env` file with the following:
 # Something does not work?
 
 [Please create an issue.](https://github.com/kasteckis/symfony-docker-compose/issues/new)
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
