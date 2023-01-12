@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 services:
   mysql:
     image: mysql:8.0
@@ -11,6 +11,7 @@ services:
       MYSQL_PASSWORD: project
     ports:
       - "3306:3306"
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: project_phpmyadmin
