@@ -2,49 +2,48 @@
 Docker compose environment for Symfony (also works for Laravel or plain PHP) projects
 
 # Summary of what is included
-* PHP 8.1.2 with XDEBUG 3.1.3
+* PHP 8.2 with XDEBUG 3
 * Apache2
 * MySQL 8.0
 * PhpMyAdmin - manage MySQL
-* Mailhog - local mailing server to test emails
-* Installs `composer` and `symfony` commands
+* Mailhog - local mailing server
+* Installs `composer` command
 * Virtualhost configuration dedicated for Symfony projects
-* Latest stable NPM and Yarn
-* Latest stable Node.js
 
 # How to install this in my project?
 
-* Download `.docker` folder and `docker-compose.yml` file and add them to your project (Don't download `.github` folder)
-* Run `docker-compose up` command from your terminal. [(Install docker compose)](https://docs.docker.com/compose/install/)
+* Download `.docker` folder and `docker-compose.yml` file and add them to your project (Skip `.github` and `public` folders)
+* Run `docker compose up` command from your terminal. [(Install docker compose)](https://docs.docker.com/compose/install/)
 
 # How to access everything?
 
 By default you can access services via:
-* Access your project website via - http://192.168.2.2/
-* MySQL can be accessed via 192.168.2.3:3306
-* PhpMyAdmin can be accessed via http://192.168.2.4/
-* Mailhog can be accessed via http://192.168.2.5:8025/
+* Access your project website via - http://localhost/
+* MySQL can be accessed via localhost:3306
+* PhpMyAdmin can be accessed via http://localhost:81
+* Mailhog can be accessed via http://localhost:8025/
 * Access docker apache-php terminal by writing - `docker exec -it project_web bash`
 
 # Modifying .env file (If you are using Symfony)
 
 If you use default IP addresses, append your `.env` file with the following:
 
-* For database connection -`DATABASE_URL=mysql://project:project@192.168.2.3:3306/project`
-* For mailing server - `MAILER_URL=mailhog:1025//randomemail@gmail.com:randompassword` (You don't need to change email or password)
+* For database connection -`DATABASE_URL=mysql://project:project@mysql:3306/project`
+* For mailing server - `MAILER_URL=mailhog:1025//randomemail@gmail.com:randompassword` (You can you any email and password)
 
 # MySQL
 
-* If you haven't modified IP addresses, you can connect to your MySQL via 192.168.2.3:3306
-* If you don't have any additional software, you can connect to database via phpmyadmin (http://192.168.2.4/)
-* Nickname: `project`
+* You can connect to your MySQL via `localhost:3306`
+* If you don't have any additional software, you can connect to database via phpmyadmin (http://localhost:81)
+* Username: `project`
 * Password: `project`
 * Default table is called `project`
 
 # Notes and common issues
 
-* You cannot use same configuration for multiple projects. Docker won't allow you to allocate same IP addresses for multiple containers.
-* You would need to modify `docker-compose.yml` IP addresses. For example from `192.168.2.0/24` to `192.168.3.0/24`
+* I use this configuration on `Windows 11` with `WSL 2`
+* You cannot use same `container_name` for multiple projects. Make sure to change them, or you can just delete that optional argument from `docker-compose.yml` file
+* You can't run multiple projects that allocate same ports on your localhost.
 * If you can't compose a new project, you might need to delete your old docker networks. Type `docker network ls` and then remove your old project network by writing `docker network rm NETWORK_ID` (for example `docker network rm 528d8c753c17`)
 * `cannot start service XXX: network YYY not found`. Open up container list with `docker container ls -a` and remove old containers with `docker container rm ID`.
 
