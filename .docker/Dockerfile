@@ -44,6 +44,8 @@ RUN echo 'alias console="php /var/www/html/bin/console"' >> ~/.bashrc
 RUN echo 'alias phpstan="/var/www/html/vendor/phpstan/phpstan/phpstan"' >> ~/.bashrc
 RUN echo 'alias dsu="/var/www/html/bin/console d:s:u --force --complete"' >> ~/.bashrc
 
+RUN echo "umask 0000" >> /root/.bashrc
+
 # Expose port 80 for Apache
 EXPOSE 80
 
