@@ -10,10 +10,15 @@ Docker compose environment for Symfony (also works for Laravel or plain PHP) pro
 * Installs `composer` command
 * Virtualhost configuration dedicated for Symfony projects
 
+# Requirements
+* Docker and Docker Compose [(Install docker compose)](https://docs.docker.com/compose/install/)
+* Makefile (Optional) (`sudo apt install make`)
+
 # How to install this in my project?
 
 * Download `.docker` folder and `docker-compose.yml` file and add them to your project (Skip `.github` and `public` folders)
-* Run `docker compose up` command from your terminal. [(Install docker compose)](https://docs.docker.com/compose/install/)
+* Run `make prepare` command from your terminal (or run `docker compose up --build`). 
+* If you need to use xdebug, run `make xdebug` command from your terminal (or run `docker compose -f docker-compose.yml -f docker-compose.xdebug.yml up -d --build`).
 
 # How to access everything?
 
@@ -21,15 +26,15 @@ By default you can access services via:
 * Access your project website via - http://localhost/
 * MySQL can be accessed via localhost:3306
 * PhpMyAdmin can be accessed via http://localhost:81
-* Mailhog can be accessed via http://localhost:8025/
-* Access docker apache-php terminal by writing - `docker exec -it project_web bash`
+* Mailhog can be accessed via http://localhost:8025/ (SMTP Port is 1025)
+* Access docker apache-php terminal by writing - `docker exec -it project_web bash` (or `make ssh`)
 
 # Modifying .env file (If you are using Symfony)
 
 If you use default IP addresses, append your `.env` file with the following:
 
 * For database connection -`DATABASE_URL=mysql://project:project@mysql:3306/project`
-* For mailing server - `MAILER_URL=mailhog:1025//randomemail@gmail.com:randompassword` (You can you any email and password)
+* For mailing server - `MAILER_DSN=smtp://user:pass@mailhog:1025` (You can you any user and password)
 
 # MySQL
 

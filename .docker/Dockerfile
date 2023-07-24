@@ -1,15 +1,50 @@
-# Use image which contains apache with php
 FROM php:8.2-apache
-RUN apt-get update && apt-get upgrade -y
-# Install packages needed to install php extensions
-RUN apt-get install git zlib1g-dev libxml2-dev libzip-dev zip unzip -y
+
+# Set the working directory inside the container
+WORKDIR /var/www/html
+
+# Install system dependencies
+RUN apt-get update \
+    && apt-get install -y \
+        libicu-dev \
+        libpq-dev \
+        libzip-dev \
+        unzip
+
 # Install PHP extensions
-RUN docker-php-ext-install zip intl mysqli pdo pdo_mysql opcache
+RUN docker-php-ext-install \
+    intl \
+    pdo \
+    pdo_pgsql \
+    zip \
+    pdo \
+    pdo_mysql \
+    opcache
+
 # Install XDEBUG
-RUN pecl install xdebug
+RUN pecl install xdebug apcu
 # Enable XDEBUG
-RUN docker-php-ext-enable xdebug
-# Install composer command
-RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
-# Set umask to 0000 (newly created files will have 777 permissions)
-RUN echo "umask 0000" >> /root/.bashrc
+RUN docker-php-ext-enable xdebug apcu
+
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
+
+# Enable Apache modules
+RUN a2enmod rewrite
+
+# Install Composer and dependencies
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Enable Apache mod_rewrite and mod_headers
+RUN a2enmod rewrite headers
+
+# You can add your own aliases here
+RUN echo 'alias console="php /var/www/html/bin/console"' >> ~/.bashrc
+RUN echo 'alias phpstan="/var/www/html/vendor/phpstan/phpstan/phpstan"' >> ~/.bashrc
+RUN echo 'alias dsu="/var/www/html/bin/console d:s:u --force --complete"' >> ~/.bashrc
+
+# Expose port 80 for Apache
+EXPOSE 80
+
+# Start Apache server
+CMD ["apache2-foreground"]

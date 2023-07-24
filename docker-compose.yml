@@ -1,14 +1,19 @@
-version: "3.8"
+version: "3"
+volumes:
+  volume_database_project:
+
 services:
   mysql:
     image: mysql:8.0
     container_name: project_mysql
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_ROOT_PASSWORD:
       MYSQL_DATABASE: project
       MYSQL_USER: project
       MYSQL_PASSWORD: project
+    volumes:
+      - volume_database_project:/var/lib/mysql
     ports:
       - "3306:3306"
 
@@ -28,16 +33,12 @@ services:
     build: ./.docker
     container_name: project_web
     volumes:
-      - ./:/var/www/html/
+      - ./:/var/www/html
       - ./.docker/virtualhost.conf:/etc/apache2/sites-available/000-default.conf
-      - ./.docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-      - ./.docker/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
     ports:
       - "80:80"
     depends_on:
       - mysql
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
   mailhog:
     image: mailhog/mailhog

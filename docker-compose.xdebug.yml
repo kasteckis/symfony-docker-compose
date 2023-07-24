@@ -1,0 +1,7 @@
+version: "3"
+services:
+  web:
+    volumes:
+      - ./.docker/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    extra_hosts:
+      - host.docker.internal:host-gateway
