@@ -10,7 +10,10 @@ RUN apt-get update \
         libpq-dev \
         libzip-dev \
         unzip \
-        git
+        git \
+        cron \
+        nano \
+        supervisor
 
 # Install PHP extensions
 RUN docker-php-ext-install \
@@ -22,22 +25,20 @@ RUN docker-php-ext-install \
     pdo_mysql \
     opcache
 
-# Install XDEBUG
+# Install XDEBUG, APCU
 RUN pecl install xdebug apcu
-# Enable XDEBUG
 RUN docker-php-ext-enable xdebug apcu
 
+# Install symfony CLI
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
-# Enable Apache modules
-RUN a2enmod rewrite
-
-# Install Composer and dependencies
+# Install Composer CLI
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Enable Apache mod_rewrite and mod_headers
-RUN a2enmod rewrite headers
+# Setup crontab
+COPY ./crontab /var/www/html/.docker/crontab
+RUN crontab /var/www/html/.docker/crontab
 
 # You can add your own aliases here
 RUN echo 'alias console="php /var/www/html/bin/console"' >> ~/.bashrc
@@ -46,8 +47,5 @@ RUN echo 'alias dsu="/var/www/html/bin/console d:s:u --force --complete"' >> ~/.
 
 RUN echo "umask 0000" >> /root/.bashrc
 
-# Expose port 80 for Apache
-EXPOSE 80
-
-# Start Apache server
-CMD ["apache2-foreground"]
+# Start Supervisor, which will run cron -f by default.
+CMD ["/usr/bin/supervisord"]

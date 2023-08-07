@@ -35,6 +35,7 @@ services:
     volumes:
       - ./:/var/www/html
       - ./.docker/virtualhost.conf:/etc/apache2/sites-available/000-default.conf
+      - ./.docker/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
     ports:
       - "80:80"
     depends_on:
