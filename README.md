@@ -18,8 +18,12 @@ Docker compose environment for Symfony (also works for Laravel or plain PHP) pro
 
 * `cd to-your-project`
 * `git clone https://github.com/kasteckis/symfony-docker-compose.git`
-* `./symfony-docker-compose/install.sh`
+* `mv ./symfony-docker-compose/.docker ./.docker`
+* `mv ./symfony-docker-compose/Makefile ./Makefile`
+* `mv ./symfony-docker-compose/docker-compose.yml ./docker-compose.yml`
+* `mv ./symfony-docker-compose/docker-compose.xdebug.yml ./docker-compose.xdebug.yml`
 * `rm -rf ./symfony-docker-compose`
+* `docker compose up`
 
 # How to access everything?
 
