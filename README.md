@@ -16,9 +16,9 @@ Docker compose environment for Symfony (also works for Laravel or plain PHP) pro
 
 # How to install this in my project?
 
-* Download `.docker` folder and `docker-compose.yml` file and add them to your project (Skip `.github` and `public` folders)
-* Run `make prepare` command from your terminal (or run `docker compose up --build`). 
-* If you need to use xdebug, run `make xdebug` command from your terminal (or run `docker compose -f docker-compose.yml -f docker-compose.xdebug.yml up -d --build`).
+* `cd to-your-project`
+* `git clone https://github.com/kasteckis/symfony-docker-compose.git`
+* `./symfony-docker-compose/install.sh`
 
 # How to access everything?
 
