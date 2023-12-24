@@ -19,6 +19,7 @@ Docker compose environment for Symfony (also works for Laravel or plain PHP) pro
 * `cd to-your-project`
 * `git clone https://github.com/kasteckis/symfony-docker-compose.git`
 * `./symfony-docker-compose/install.sh`
+* `rm -rf ./symfony-docker-compose`
 
 # How to access everything?
 
