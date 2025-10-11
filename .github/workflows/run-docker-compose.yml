@@ -13,4 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Try to build docker compose
-      run: docker-compose up -d --build
+      run: docker compose up -d --build

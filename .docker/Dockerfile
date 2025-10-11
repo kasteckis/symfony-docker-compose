@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.4-apache
 
 # Set the working directory inside the container
 WORKDIR /var/www/html
