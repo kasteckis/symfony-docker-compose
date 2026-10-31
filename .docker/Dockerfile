@@ -1,4 +1,4 @@
-FROM php:8.4-apache
+FROM php:8.5-apache
 
 # Set the working directory inside the container
 WORKDIR /var/www/html
@@ -22,8 +22,7 @@ RUN docker-php-ext-install \
     pdo_pgsql \
     zip \
     pdo \
-    pdo_mysql \
-    opcache
+    pdo_mysql
 
 # Install XDEBUG, APCU
 RUN pecl install xdebug apcu
