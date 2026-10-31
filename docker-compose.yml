@@ -1,4 +1,3 @@
-version: "3"
 volumes:
   volume_database_project:
 
