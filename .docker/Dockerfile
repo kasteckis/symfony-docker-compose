@@ -28,12 +28,13 @@ RUN docker-php-ext-install \
 RUN pecl install xdebug apcu
 RUN docker-php-ext-enable xdebug apcu
 
-# Install symfony CLI
-RUN curl -sS https://get.symfony.com/cli/installer | bash
-RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
-
 # Install Composer CLI
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install Symfony CLI
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony5 /root/.config/symfony-cli
+RUN cp /root/.config/symfony-cli/bin/symfony /usr/local/bin/symfony
 
 # Setup crontab
 COPY ./crontab /var/www/html/.docker/crontab
